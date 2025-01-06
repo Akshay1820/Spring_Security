@@ -1,0 +1,20 @@
+Spring Security:-
+
+Why:-
+	Security is important to protect our application from attackers and to protect our data.
+
+
+What will happen if we dont focus on security:-
+	
+	Protection:- Any one can able to login and can access any resource.
+	
+	Trust:- Will loose trust of users if everybody is aware that our application is not secure.
+	
+	Integrity:- An attacker can replace our resources with the faulty one.
+
+Spring Security key compontents:-
+	Authentication:- It checks who you are?
+	Authorization:- It check what actions you allowed after checking who you are.
+	
+	
+	
