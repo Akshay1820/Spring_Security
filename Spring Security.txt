@@ -17,4 +17,51 @@ Spring Security key compontents:-
 	Authorization:- It check what actions you allowed after checking who you are.
 	
 	
-	
+How Spring Security works internally?
+
+Key compontents:-
+Request
+Response
+Filter chain
+Authentication Filter
+Authentication Manager
+Authentication Provider
+	Password Encode
+	UserDetailsService
+Security context	
+
+1. Request:- Any HTTP request that we hit eg:- login,getting some information of users.
+2. Filter chain:- Any request that hit are pass through the filter chain series.
+
+3. Authentication filter:- So authentication filter intercepts the request and grab the username and password from the authentication request
+							and package them into the object.i.e Create a authentication Object.
+
+4. Authentication Manager:- Once the authentication Object is created then the job of Authentication Manager comes into picture.
+							Authentication Manager decides what to do with this authentication Object which include username and password.
+							Authentication Manager deligate the task to authenticate user to the Authentication Provider.
+
+5. Authentication Provider:-Authentication Provider is responsible to check whether the give authenticatation credentials are correct or not.
+							To authenticate user credentials, provider needs two things 1. Password Encoder and 2.UserDetailsService
+
+							Password Encoder:- As user submit the username and password the password must be in plain text
+												and to compare the provided credentials with the stored one we need to Encode the plain text password
+												because in database we stored a hashed password.
+							UserDetailsService:- It is mainly use for fetching the user records from the datasource eg,InMeomory,database like mysql,postgress etc.
+												 From the Authentication Object it takes the username and with the help of username it will find the 
+												 entire record of user with its User Role as well. The object that returns from the service is called UserDetails Object.
+
+			After authenticating the user the Authentication provider pass on the complete Authentication Object which include username,password,User Role etc to the Authentication Manager 
+
+6. Security Context:-
+		1.Holds the Authentication Object:- It holds the entire user information like username,password role for further use.
+
+		2. Global Access:- These information are available through out the application using SecurityContextHolder, as the user will send subsequent requests. To access other resources.
+
+		3. Use for Authorization:- as the object is available gloabally for every resource we can check whether the user has right permission to access it or not.
+
+
+
+(Note):-
+	When a user makes a login request, Spring Security checks if an Authentication object is present in the SecurityContextHolder.
+If not, the AuthenticationManager is invoked to authenticate the user via the configured AuthenticationProvider. Upon successful authentication, an Authentication object is created and stored in the SecurityContext via the SecurityContextHolder.
+For subsequent requests, Spring Security retrieves the Authentication object from the SecurityContextHolder to perform authorization checks and determine access permissions based on the user's roles and authorities.
