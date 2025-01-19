@@ -65,3 +65,45 @@ Security context
 	When a user makes a login request, Spring Security checks if an Authentication object is present in the SecurityContextHolder.
 If not, the AuthenticationManager is invoked to authenticate the user via the configured AuthenticationProvider. Upon successful authentication, an Authentication object is created and stored in the SecurityContext via the SecurityContextHolder.
 For subsequent requests, Spring Security retrieves the Authentication object from the SecurityContextHolder to perform authorization checks and determine access permissions based on the user's roles and authorities.
+
+
+
+Date:- 19/01/2025:-
+
+Spring boot basic authentication
+
+
+SpringBootWebSecurityConfiguration:- The file in which default authentication and Form based authentication is enabled.
+
+
+To set our Custom Security Configuration following are the steps:
+1. Create a new class and annotate it with @Configuration as we specifying the security configuration and @EnableWebSecurity.
+2. We need to copy the method named "defaultSecurityFilterChain" and annotate it with @Bean.
+
+
+Basic vs Form Based Authentication:-
+
+In Basic authentication we don't have any UI and any logout page. To close the session we have to close the tab.
+
+If we inspect out login activity in basic authentication we can see in Authorization key we can see some encrypted value it is nothing but your username and password in Base64 format.
+
+
+So I have created a custom SecurityConfig class in which I have removed the Form based authentication and keep basic authentication.
+
+Also I have to make my each API request Stateless, which means there is no connection between client and server and no API is related to each other.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
